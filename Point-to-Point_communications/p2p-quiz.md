@@ -14,9 +14,9 @@ A: Standard, buffered, ready and asynchronous
 A: True
 
 ## What can we use probing for ?
-A: To know if a message is waiting to be delivered to a process
-A: TO know the tag of an incoming message
-A: To know the ID of the process sending a message
+A: To know if a message is waiting to be delivered to a process <br>
+A: TO know the tag of an incoming message <br>
+A: To know the ID of the process sending a message <br>
 A: TO know the numbers of elements in an incoming message
 
 ## In non-blocking communications, which function must necessarily be called at some point after a receive or a send ?
