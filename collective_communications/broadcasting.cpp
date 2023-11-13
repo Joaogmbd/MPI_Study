@@ -37,35 +37,21 @@ int main(int argc, char **argv) {
 
   // 3- Compute the sum depending on the rank
   double sum = 0.0;
-  if (rank == 0) {  
-    for (int i=0; i < n_elements; ++i) {
+  if (rank == 0) {
+    // Process 0 sums all elements
+    for (int i = 0; i < n_elements; ++i)
+      sum += buffer[i];
+  } else if (rank == 1) {
+    // Process 1 sums positive elements
+    for (int i = 0; i < n_elements; ++i)
+      if (buffer[i] > 0)
         sum += buffer[i];
-        std::cout << buffer[i] << (i < n_elements-1 ? ", " : "");
-    }
-    std::cout << ")" << std::endl;
-
+  } else if (rank == 2) {
+    // Process 2 sums negative elements
+    for (int i = 0; i < n_elements; ++i)
+      if (buffer[i] < 0)
+        sum += buffer[i];
   }
-  else if (rank == 1) {
-    for (int i=0; i < n_elements; ++i) {
-        if (buffer[i] > 0) {
-            sum += buffer[i];
-            std::cout << buffer[i] << (i < n_elements-1 ? ", " : "");
-        }
-    }
-    std::cout << ")" << std::endl;
-
-  } 
-  else if (rank == 2) {
-    for (int i=0; i < n_elements; ++i) {
-        if (buffer[i] <  0) {
-            sum += buffer[i];
-            std::cout << buffer[i] << (i < n_elements-1 ? ", " : "");
-        }
-    }
-    std::cout << ")" << std::endl;
-  }
-
-  
   // Printing the result and terminating the program
   // Precision is set high for the validation process, please do not modify this.
   std::cout << std::setprecision(16) << sum << std::endl;
